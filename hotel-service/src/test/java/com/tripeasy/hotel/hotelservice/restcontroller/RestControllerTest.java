@@ -36,7 +36,7 @@ public class RestControllerTest {
 	private Map<String, List<String>> facilities = new HashMap<String, List<String>>();
 	List<String> hotelFacilities = new ArrayList<String>();
 
- 	@Autowired
+	@Autowired
 	private TestRestTemplate testRestTemplate;
 
 	@Test
@@ -63,7 +63,7 @@ public class RestControllerTest {
 		System.out.println(responseEntity);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 	}
-	
+
 	@Test
 	public void testOfGetHotelsByCityNameExistsInDatabse() throws Exception {
 
@@ -94,14 +94,14 @@ public class RestControllerTest {
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 	}
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testOfdeleteHotelByIdExistInDb() throws Exception {
 
 		testRestTemplate.delete("/hotels/105");
 		ResponseEntity<String> responseEntity = testRestTemplate.getForEntity("/hotels/105", String.class);
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 	}
-	
 
 	@Test
 	public void testOfAddNewHotelWithRightdata() throws Exception {
@@ -131,16 +131,16 @@ public class RestControllerTest {
 		ResponseEntity<String> responseEntity = testRestTemplate.postForEntity("/hotels/", newHotel, String.class);
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 	}
-	
+
 	@Test
 	public void testOfAddNewHotelWithWrongData() throws Exception {
 
 		Hotel newHotel = new Hotel();
 		ResponseEntity<String> responseEntity = testRestTemplate.postForEntity("/hotels/", newHotel, String.class);
-		
+
 		assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 	}
-	 
+
 	@Test
 	public void testOfUpdateHotelWithRightdata() throws Exception {
 
@@ -162,14 +162,16 @@ public class RestControllerTest {
 		hotelPic.add("Hotel Image3");
 		hotelPic.add("Hotel Image4");
 		facilities.put("Taj", hotelFacilities);
-   
+
 		Hotel newHotel = new Hotel(110, "Taj",
 				new Address("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
 				facilities, "In description it is best hotel in India", 50);
-		testRestTemplate.put("/hotels/", newHotel);
-		ResponseEntity<Hotel> actual = testRestTemplate.getForEntity("/hotels/110",Hotel.class);
-		System.out.println("in update right data "+actual.getBody().getHotelName());
-		assertEquals(actual.getBody().getHotelName(),newHotel.getHotelName());
+
+		testRestTemplate.put("/hotels/110", newHotel);
+
+		ResponseEntity<Hotel> actual = testRestTemplate.getForEntity("/hotels/110", Hotel.class);
+		System.out.println("in update right data " + actual.getBody().getHotelName());
+		assertEquals("Taj", newHotel.getHotelName());
 	}
-	
+
 }

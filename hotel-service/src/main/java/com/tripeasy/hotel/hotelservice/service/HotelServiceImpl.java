@@ -81,4 +81,26 @@ public class HotelServiceImpl implements HotelService {
 	 * } hotel.setRooms(setOfRooms); System.out.println("updated hotel  = " +
 	 * hotel); hotelRepository.save(hotel); }
 	 */
+
+	@Override
+	public Hotel updateRoom(Hotel hotel, Integer numberOfGuest, Boolean bookRoom) {
+		Integer totalRooms = hotel.getTotalRooms();
+		Integer totalAvailableRooms = hotel.getTotalAvailableRooms();
+		System.out.println("total rooms = " + totalRooms);
+		System.out.println("avalable rooms = " + totalAvailableRooms);
+		if (bookRoom) {
+			if (totalRooms >= totalAvailableRooms && totalAvailableRooms>0) {
+				totalAvailableRooms--;
+				hotel.setTotalAvailableRooms(totalAvailableRooms);
+			}
+
+		} else {
+			if (totalAvailableRooms < totalRooms) {
+				totalAvailableRooms++;
+				hotel.setTotalAvailableRooms(totalAvailableRooms);
+			}
+		}
+		System.out.println("updated hotel  = " + hotel);
+		return hotelRepository.save(hotel);
+	}
 }

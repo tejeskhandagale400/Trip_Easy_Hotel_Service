@@ -18,7 +18,8 @@ public class Hotel {
 	private HashMap<Integer, String> review;
 	private Set<Room> rooms;
 	private List<String> photos;
-	private Integer totalRooms;
+	private  Integer totalRooms;
+	private  Integer totalAvailableRooms ;
 	/*
 	 * private googleMap;
 	 */
@@ -40,12 +41,17 @@ public class Hotel {
 		this.address = address;
 	}
 
-	public Hotel(String hotelName, Address address) {
-		super();
-		this.hotelId = hotelId;
-		this.hotelName = hotelName;
-		this.address = address;
-	}
+	/*
+	 * public Hotel(Integer hotelId, String hotelName, Address address,
+	 * HashMap<Integer, String> review, Set<Room> rooms, List<String> photos,
+	 * Integer totalRooms, Integer totalAvailableRooms, Map<String, List<String>>
+	 * facilities, String description, String lattitude, String longitude) {
+	 * super(); this.hotelId = hotelId; this.hotelName = hotelName; this.address =
+	 * address; this.review = review; this.rooms = rooms; this.photos = photos;
+	 * this.totalRooms = totalRooms; this.totalAvailableRooms = totalRooms;
+	 * this.facilities = facilities; this.description = description; this.lattitude
+	 * = lattitude; this.longitude = longitude; }
+	 */
 
 	public Hotel(Integer hotelId, String hotelName, Address address, HashMap<Integer, String> review, Set<Room> rooms,
 			List<String> photos, Map<String, List<String>> facilities, String description, Integer totalRooms) {
@@ -78,6 +84,7 @@ public class Hotel {
 		this.longitude = longitude;
 	}
 
+	
 	public Integer getHotelId() {
 		return hotelId;
 	}
@@ -126,6 +133,22 @@ public class Hotel {
 		this.photos = photos;
 	}
 
+	public Integer getTotalRooms() {
+		return totalRooms;
+	}
+
+	public void setTotalRooms(Integer totalRooms) {
+		this.totalRooms = totalRooms;
+	}
+
+	public Integer getTotalAvailableRooms() {
+		return totalAvailableRooms;
+	}
+
+	public void setTotalAvailableRooms(Integer totalAvailableRooms) {
+		this.totalAvailableRooms = totalAvailableRooms;
+	}
+
 	public Map<String, List<String>> getFacilities() {
 		return facilities;
 	}
@@ -140,14 +163,6 @@ public class Hotel {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Integer getTotalRooms() {
-		return totalRooms;
-	}
-
-	public void setTotalRooms(Integer totalRooms) {
-		this.totalRooms = totalRooms;
 	}
 
 	public String getLattitude() {
@@ -166,6 +181,7 @@ public class Hotel {
 		this.longitude = longitude;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,9 +191,13 @@ public class Hotel {
 		result = prime * result + ((facilities == null) ? 0 : facilities.hashCode());
 		result = prime * result + ((hotelId == null) ? 0 : hotelId.hashCode());
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
+		result = prime * result + ((lattitude == null) ? 0 : lattitude.hashCode());
+		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
 		result = prime * result + ((photos == null) ? 0 : photos.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((rooms == null) ? 0 : rooms.hashCode());
+		result = prime * result + ((totalAvailableRooms == null) ? 0 : totalAvailableRooms.hashCode());
+		result = prime * result + ((totalRooms == null) ? 0 : totalRooms.hashCode());
 		return result;
 	}
 
@@ -215,6 +235,16 @@ public class Hotel {
 				return false;
 		} else if (!hotelName.equals(other.hotelName))
 			return false;
+		if (lattitude == null) {
+			if (other.lattitude != null)
+				return false;
+		} else if (!lattitude.equals(other.lattitude))
+			return false;
+		if (longitude == null) {
+			if (other.longitude != null)
+				return false;
+		} else if (!longitude.equals(other.longitude))
+			return false;
 		if (photos == null) {
 			if (other.photos != null)
 				return false;
@@ -229,6 +259,16 @@ public class Hotel {
 			if (other.rooms != null)
 				return false;
 		} else if (!rooms.equals(other.rooms))
+			return false;
+		if (totalAvailableRooms == null) {
+			if (other.totalAvailableRooms != null)
+				return false;
+		} else if (!totalAvailableRooms.equals(other.totalAvailableRooms))
+			return false;
+		if (totalRooms == null) {
+			if (other.totalRooms != null)
+				return false;
+		} else if (!totalRooms.equals(other.totalRooms))
 			return false;
 		return true;
 	}

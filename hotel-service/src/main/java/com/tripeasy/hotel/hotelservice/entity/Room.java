@@ -22,6 +22,18 @@ public class Room {
 	}
 
 	public Room(Integer roomNumber, String roomType, Double price, Integer bedCount, String bedType, boolean miniBar,
+			List<String> photos, boolean isAvailable) {
+		super();
+		this.roomNumber = roomNumber;
+		this.roomType = roomType;
+		this.price = price;
+		this.bedCount = bedCount;
+		this.bedType = bedType;
+		this.miniBar = miniBar;
+		this.photos = photos;
+	}
+
+	public Room(Integer roomNumber, String roomType, Double price, Integer bedCount, String bedType, boolean miniBar,
 			List<String> photos) {
 		super();
 		this.roomNumber = roomNumber;
@@ -89,20 +101,6 @@ public class Room {
 		this.photos = photos;
 	}
 
-	 
-
-	 
-
- 
-	 
- 
- 
-	@Override
-	public String toString() {
-		return "Room [roomNumber=" + roomNumber + ", roomType=" + roomType + ", price=" + price + ", bedCount="
-				+ bedCount + ", bedType=" + bedType + ", miniBar=" + miniBar + ", photos=" + photos + "]";
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -159,6 +157,12 @@ public class Room {
 		} else if (!roomType.equals(other.roomType))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Room [roomNumber=" + roomNumber + ", roomType=" + roomType + ", price=" + price + ", bedCount="
+				+ bedCount + ", bedType=" + bedType + ", miniBar=" + miniBar + ", photos=" + photos + "]";
 	}
 
 }

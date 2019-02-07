@@ -69,19 +69,18 @@ public class HotelResource {
 
 	@PutMapping
 	public void updateHotel(@RequestBody Hotel hotel) throws InvalidInputException {
-		hotelService.update(hotel);
-
+ 			hotelService.update(hotel);
+		 
 	}
 
-	/*
-	 * @PutMapping("/{hotelId}") public void updateAvailabilityOfRoom(@PathVariable
-	 * Integer hotelId, @RequestParam Integer roomNumber,
-	 * 
-	 * @RequestParam Integer numberOfGuest, @RequestParam Boolean statusAvailable) {
-	 * 
-	 * Hotel hotel = hotelService.getHotelById(hotelId).get();
-	 * hotelService.updateRoom(hotel, roomNumber, numberOfGuest, statusAvailable); }
-	 */
+	@PutMapping("/{hotelId}")
+	public void updateAvailabilityOfRoom(@PathVariable Integer hotelId, @RequestParam Integer numberOfGuest,
+			@RequestParam Boolean bookRoom) {
+		System.out.println("para are  = " +hotelId +"  " +numberOfGuest + "guest " +bookRoom);
+		Hotel hotel = hotelService.getHotelById(hotelId).get();
+		System.out.println("hotel is =" +hotel);
+		hotelService.updateRoom(hotel, numberOfGuest, bookRoom);
+	}
 
 	@DeleteMapping("/{hotelId}")
 	public void deleteHotelById(@PathVariable Integer hotelId) {

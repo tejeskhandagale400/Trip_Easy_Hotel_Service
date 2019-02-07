@@ -42,7 +42,7 @@ public class ServiceTest {
 
 	@Test
 	public void testGetHotelById() throws InvalidInputException {
- 		Hotel actualHotel = hotelService.getHotelById(102).get();
+		Hotel actualHotel = hotelService.getHotelById(102).get();
 		Integer expected = 102;
 		assertEquals(expected, actualHotel.getHotelId());
 
@@ -51,7 +51,7 @@ public class ServiceTest {
 	@Test
 	public void testGetHotelByWrongId() {
 		Optional<Hotel> actualHotel = hotelService.getHotelById(1111);
- 		assertFalse(actualHotel.isPresent());
+		assertFalse(actualHotel.isPresent());
 
 	}
 
@@ -136,6 +136,7 @@ public class ServiceTest {
 				new Address("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
 				facilities, "In description it is best hotel in India", 50);
 		newHotel.setHotelName("Samrat Hotel");
+		newHotel.setTotalAvailableRooms(50);
 		Hotel updatedHotel = hotelService.update(newHotel);
 		assertEquals("Samrat Hotel", updatedHotel.getHotelName());
 
@@ -157,6 +158,24 @@ public class ServiceTest {
 		hotelService.deleteHotelById(105);
 		Optional<Hotel> hotel = hotelService.getHotelById(105);
 		assertFalse(hotel.isPresent());
+
+	}
+
+	@Test
+	public void testUpdateRoomWithBookingRoom() {
+		Hotel hotel = hotelService.getHotelById(555).get();
+		Hotel  actualHotel = hotelService.updateRoom(hotel, 4, true);
+		Integer expected = 49;
+		assertEquals(expected , actualHotel.getTotalAvailableRooms());
+
+	}
+	
+	@Test
+	public void testUpdateRoomWithNotBookingRoom() {
+		Hotel hotel = hotelService.getHotelById(555).get();
+		Hotel  actualHotel = hotelService.updateRoom(hotel, 4, false);
+		Integer expected = 50;
+		assertEquals(expected , actualHotel.getTotalAvailableRooms());
 
 	}
 

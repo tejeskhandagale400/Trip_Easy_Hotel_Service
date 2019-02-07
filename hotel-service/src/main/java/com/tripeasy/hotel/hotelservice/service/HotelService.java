@@ -23,6 +23,8 @@ public interface HotelService {
 
 	List<Hotel> getAllHotel();
 
+	 Hotel updateRoom(Hotel hotel, Integer numberOfGuest, Boolean bookRoom);
+
 	//void updateRoom(Hotel hotel, Integer roomNumber, Integer numberOfGuest, Boolean statusAvailable);
 
  
