@@ -19,8 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.tripeasy.hotel.hotelservice.entity.Address;
 import com.tripeasy.hotel.hotelservice.entity.Hotel;
+import com.tripeasy.hotel.hotelservice.entity.HotelAddress;
 import com.tripeasy.hotel.hotelservice.entity.Room;
 import com.tripeasy.hotel.hotelservice.resource.HotelResource;
 
@@ -126,8 +126,8 @@ public class RestControllerTest {
 		facilities.put("Taj", hotelFacilities);
 
 		Hotel newHotel = new Hotel(105, "Taj",
-				new Address("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
-				facilities, "In description it is best hotel in India", 50);
+				new HotelAddress("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
+				facilities, "In description it is best hotel in India", 50 , 50);
 		ResponseEntity<String> responseEntity = testRestTemplate.postForEntity("/hotels/", newHotel, String.class);
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 	}
@@ -164,8 +164,8 @@ public class RestControllerTest {
 		facilities.put("Taj", hotelFacilities);
 
 		Hotel newHotel = new Hotel(110, "Taj",
-				new Address("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
-				facilities, "In description it is best hotel in India", 50);
+				new HotelAddress("Sector 2", "Neer to Cap", "Maharashtra", "India", "Pali", 415205), review, rooms, hotelPic,
+				facilities, "In description it is best hotel in India",50 , 50);
 
 		testRestTemplate.put("/hotels/110", newHotel);
 

@@ -67,7 +67,7 @@ public class HotelResource {
 		return new ResponseEntity<>(hotel.get(), HttpStatus.OK);
 	}
 
-	@PutMapping
+	@PutMapping      
 	public void updateHotel(@RequestBody Hotel hotel) throws InvalidInputException {
  			hotelService.update(hotel);
 		 

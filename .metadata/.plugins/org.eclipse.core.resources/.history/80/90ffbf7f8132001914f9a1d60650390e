@@ -1,0 +1,7 @@
+package com.example.demospringsecurity.repository;
+
+public class UserRepository {
+
+	 
+
+}
